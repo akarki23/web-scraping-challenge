@@ -5,18 +5,21 @@ import pandas as pd
 from time import sleep
 import requests
 
-# Function to call
+# Function to open browser
 def init_browser():
     
     # Set Executable Path & Initialize Chrome Browser (Mac)
     executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
     return Browser("chrome", **executable_path, headless = False)
 
+# Scrape function
 def scrape():
+
+    # Call function to open browser
+    browser = init_browser()
 
     # NASA Mars News Site
     nasa_mars_url = "https://mars.nasa.gov/news/"
-    browser = init_browser()
     browser.visit(nasa_mars_url)
     sleep(5)
     bs = BeautifulSoup(browser.html, 'html.parser')
